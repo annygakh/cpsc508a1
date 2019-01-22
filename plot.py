@@ -52,7 +52,7 @@ def plot_scatter(dataset):
     fig = go.Figure(data=traces, layout=layout)
     offline.plot(traces, filename = platform)
 
-def plot_chart(dataset, layout):
+def plot_chart(dataset, layout, fname):
   traces = []
   for platform in dataset:
     trace = go.Bar(
@@ -62,7 +62,7 @@ def plot_chart(dataset, layout):
     )
     traces.append(trace)
   fig = go.Figure(data=traces, layout = layout)
-  offline.plot(fig, filename='grouped-bar')
+  offline.plot(fig, filename=fname)
 
 
 if __name__ == "__main__":
@@ -75,7 +75,7 @@ if __name__ == "__main__":
       title='kilobytes/sec'
     ),
   )
-  plot_chart(chart_data(fname), chart_layout)
+  plot_chart(chart_data(fname), chart_layout, "benchmarks_large.html")
   plot_scatter(scatter_data(fname))
 
   # small benchmarks
@@ -91,6 +91,6 @@ if __name__ == "__main__":
     ),
     barmode='group'
   )
-  plot_chart(chart_data(fname), chart_layout)
+  plot_chart(chart_data(fname), chart_layout, "benchmarks_small.html")
   plot_scatter(scatter_data(fname))
 
